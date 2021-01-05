@@ -1,6 +1,0 @@
-PETALINUX_VER=2020.2
-VALIDATE_HW_CHKSUM=1
-HARDWARE_PATH=/home/oshears/Documents/vt/research/code/verilog/neuromorphic_fpga_bridge/vivado/neuromorphic_asic_bridge_system_project/neuromorphic_asic_bridge_system_wrapper.xsa
-HARDWARE_CHECKSUM=4262759212e5d6d4493f494f6a4eb086
-YOCTO_SDK=5ff8fc5f85d1566b314bb73eaa378212
-RFSCONFIG_CHKSUM=10e83e2a68886860d4e1339c236119ed
