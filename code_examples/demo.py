@@ -40,7 +40,7 @@ print(f"Debug Register: { neuromorphic_bridge_registers[DBG_REG] }")
 
 
 # Test Direct Control Register
-for i in range(2**16):
+for i in range(256):
     neuromorphic_bridge_registers[DIRECT_CTRL_REG] = i
     print(f"Direct Control Register: { neuromorphic_bridge_registers[DIRECT_CTRL_REG] }")
     time.sleep(0.1)
