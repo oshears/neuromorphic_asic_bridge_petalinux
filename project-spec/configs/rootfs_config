@@ -2761,7 +2761,7 @@ CONFIG_python3=y
 # CONFIG_python3-2to3 is not set
 # CONFIG_libpython3 is not set
 # CONFIG_python3-xml is not set
-# CONFIG_python3-threading is not set
+CONFIG_python3-threading=y
 # CONFIG_python3-modules is not set
 # CONFIG_python3-dev is not set
 # CONFIG_python3-curses is not set
@@ -3941,16 +3941,16 @@ CONFIG_bridge-utils=y
 #
 # packagegroup-petalinux-opencv 
 #
-# CONFIG_packagegroup-petalinux-opencv is not set
-# CONFIG_packagegroup-petalinux-opencv-dbg is not set
-# CONFIG_packagegroup-petalinux-opencv-dev is not set
+CONFIG_packagegroup-petalinux-opencv=y
+CONFIG_packagegroup-petalinux-opencv-dbg=y
+CONFIG_packagegroup-petalinux-opencv-dev=y
 
 #
 # packagegroup-petalinux-python-modules 
 #
-# CONFIG_packagegroup-petalinux-python-modules is not set
-# CONFIG_packagegroup-petalinux-python-modules-dbg is not set
-# CONFIG_packagegroup-petalinux-python-modules-dev is not set
+CONFIG_packagegroup-petalinux-python-modules=y
+CONFIG_packagegroup-petalinux-python-modules-dbg=y
+CONFIG_packagegroup-petalinux-python-modules-dev=y
 
 #
 # packagegroup-petalinux-qt 
