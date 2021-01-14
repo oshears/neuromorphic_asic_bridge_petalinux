@@ -48,7 +48,13 @@ petalinux-config -c kernel
 
 # Device Drivers > Multimedia Support > Media USB Adapter > USB Video Class (UVC)
 # Device Drivers > Multimedia Support > Media USB Adapter > USB Video Class (UVC) Input Event Support
+# Device Drivers -> Userspace I/O drivers
+# Device Drivers -> Industrial I/O support -> Analog to digital converters -> < > Xilinx XADC driver
+# <*> Userspace I/O platform driver with generic IRQ handing
+# <*> Userspace platform driver with generic irq and dynamic memory
+# <*> Xilinx AI Engine driver
 # Exclde USB 2.0 OTG FSM Implementation in Device Drivers > USB Support
+petalinux-build -x clean
 petalinux-build
 petalinux-package --boot --fsbl ./images/linux/zynq_fsbl.elf --fpga ~/Documents/vt/research/code/verilog/neuromorphic_asic_bridge/vivado/neuromorphic_asic_bridge_system_project/neuromorphic_asic_bridge_system_project.runs/impl_1/neuromorphic_asic_bridge_system_wrapper.bit --u-boot --force
 cp images/linux/BOOT.BIN /media/oshears/BOOT/

@@ -7,16 +7,30 @@ mem_file = os.open("/dev/mem", os.O_SYNC | os.O_RDWR)
 neuromorphic_bridge_axi_base_addr = 0x43C00000
 neuromorphic_bridge_axi_addr_size = 0x10000
 neuromorphic_bridge_registers = mmap.mmap(mem_file, neuromorphic_bridge_axi_addr_size, mmap.MAP_SHARED, mmap.PROT_READ | mmap.PROT_WRITE, 0, neuromorphic_bridge_axi_base_addr) 
+regs = neuromorphic_bridge_registers
 
-CHAR_SEL_REG = 0
-NET_OUT_REG = 4
-DIRECT_CTRL_REG = 8
-DBG_REG = 12
+CHAR_SEL_REG = 0x0
+NET_OUT_REG = 0x4
+DIRECT_CTRL_REG = 0x8
+DBG_REG = 0xC
+VAUX0_REG = 0x10
+VAUX1_REG = 0x14
+VAUX2_REG = 0x18
+VAUX3_REG = 0x1C
 
-DBG_REG_1HZ = 0x8
-DBG_REG_DIRECT_CTRL_DIGIT_OUT = 0x4
-DBG_REG_DIRECT_CTRL_LED_OUT = 0x2
-DBG_REG_CHAR_SELECT_LED_OUT = 0x1
+# DBG Controls
+# BIT 0: IF ACTIVE, then display char information on LEDs, ELSE display network output on LEDS
+# BIT 1: IF ACTIVE, then display direct_ctrl_reg values on LEDS, ELSE display char_pwm_gen outputs on LEDS 
+# BIT 2: Use direct_ctrl_reg value as digit outputs ELSE use char_pwm_gen
+# BIT 3: Use slow 1HZ Clock
+# BIT 4: Use 1-Hot Encoding for XADC Multiplexer
+# BIT 5: debug_reg[5] output on XADC header GPIO3
+DBG_REG_GPIO3_HIGH = 0x20
+DBG_REG_1HOT = 0x10
+DBG_REG_1HZ = 0x08
+DBG_REG_DIRECT_CTRL_DIGIT_OUT = 0x04
+DBG_REG_DIRECT_CTRL_LED_OUT = 0x02
+DBG_REG_CHAR_SELECT_LED_OUT = 0x01
 
 # Change Frequency to 1HZ
 # Display Char Select Reg Outputs on LEDS
@@ -44,3 +58,17 @@ for i in range(256):
     neuromorphic_bridge_registers[DIRECT_CTRL_REG] = i
     print(f"Direct Control Register: { neuromorphic_bridge_registers[DIRECT_CTRL_REG] }")
     time.sleep(0.1)
+
+
+# Cycle Through Network Output
+userInput = ""
+neuromorphic_bridge_registers[DBG_REG] = DBG_REG_1HOT
+
+while userInput != "q":
+    print(f"Network Output: {neuromorphic_bridge_registers[NET_OUT_REG]}")
+    print(f"VAUX0: {neuromorphic_bridge_registers[VAUX0_REG]}")
+    print(f"VAUX1: {neuromorphic_bridge_registers[VAUX1_REG]}")
+    print(f"VAUX2: {neuromorphic_bridge_registers[VAUX2_REG]}")
+    print(f"VAUX3: {neuromorphic_bridge_registers[VAUX3_REG]}")
+
+    userInput = input()
