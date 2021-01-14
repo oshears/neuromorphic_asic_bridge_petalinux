@@ -21,7 +21,12 @@ petalinux-config -c rootfs
 # Petalinux Package Groups -> packagegroup-petalinux-python-modules
 # Image Features -> auto-login
 # apps -> peekpoke
+#petalinux-build -x clean
+#petalinux-build
 petalinux-config -c kernel
+#petalinux-build -c kernel -x update-recipe
+#petalinux-build -c kernel -x finish
+#petalinux-build -c kernel
 # For Webcam Support:
 # Device Drivers
 # USB support
@@ -48,16 +53,36 @@ petalinux-config -c kernel
 
 # Device Drivers > Multimedia Support > Media USB Adapter > USB Video Class (UVC)
 # Device Drivers > Multimedia Support > Media USB Adapter > USB Video Class (UVC) Input Event Support
-# Device Drivers -> Userspace I/O drivers
 # Device Drivers -> Industrial I/O support -> Analog to digital converters -> < > Xilinx XADC driver
+# Device Drivers -> Userspace I/O drivers
 # <*> Userspace I/O platform driver with generic IRQ handing
 # <*> Userspace platform driver with generic irq and dynamic memory
 # <*> Xilinx AI Engine driver
 # Exclde USB 2.0 OTG FSM Implementation in Device Drivers > USB Support
-petalinux-build -x clean
 petalinux-build
 petalinux-package --boot --fsbl ./images/linux/zynq_fsbl.elf --fpga ~/Documents/vt/research/code/verilog/neuromorphic_asic_bridge/vivado/neuromorphic_asic_bridge_system_project/neuromorphic_asic_bridge_system_project.runs/impl_1/neuromorphic_asic_bridge_system_wrapper.bit --u-boot --force
 cp images/linux/BOOT.BIN /media/oshears/BOOT/
 cp images/linux/image.ub /media/oshears/BOOT/
 cp images/linux/boot.scr /media/oshears/BOOT/
 sudo tar xvf ./images/linux/rootfs.tar.gz -C /media/oshears/ROOTFS/
+# sync
+# watch grep -e Dirty: -e Writeback: /proc/meminfo
+#udisksctl unmount -b /dev/sdb1
+#udisksctl power-off -b /dev/sdb
+# also if you run petalinux-build ic kernel -x finish it will copy the fragment to you recipe
+# Copying Kernel Config
+# https://forums.xilinx.com/t5/Embedded-Linux/petalinux-2020-1-kernel-config-file/td-p/1147298
+# Creating Custom Linux UIO
+# https://forums.xilinx.com/t5/Embedded-Linux/Custom-Hardware-with-UIO/td-p/804303
+# I also checked Yocto/build-tool in petalinux-config. Default setting is bitbake, not devtool. 
+# After changing to devtool, the bahaviour of whole process is slightly different. 
+# I found it inconvenient, especially due to different file naming scheme in meta-user.
+# XRT
+# https://xilinx.github.io/XRT/2018.3/html/yocto.html#add-xrt-kernel-node-in-device-tree
+#petalinux-build -c device-tree -x cleansstate
+#petalinux-build -c device-tree
+#petalinux-config -c kernel
+#petalinux-build -c kernel
+#petalinux-build -c kernel -x update-recipe
+#petalinux-build -c kernel -x finish
+#petalinux-build -x mrproper -f
