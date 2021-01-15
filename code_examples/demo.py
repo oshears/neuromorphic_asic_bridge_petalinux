@@ -3,10 +3,12 @@ import mmap
 import time
 
 
-mem_file = os.open("/dev/mem", os.O_SYNC | os.O_RDWR)
-neuromorphic_bridge_axi_base_addr = 0x43C00000
+# mem_file = os.open("/dev/mem", os.O_SYNC | os.O_RDWR)
+mem_file = os.open("/dev/uio0", os.O_SYNC | os.O_RDWR)
+# neuromorphic_bridge_axi_base_addr = 0x43C00000
 neuromorphic_bridge_axi_addr_size = 0x10000
-neuromorphic_bridge_registers = mmap.mmap(mem_file, neuromorphic_bridge_axi_addr_size, mmap.MAP_SHARED, mmap.PROT_READ | mmap.PROT_WRITE, 0, neuromorphic_bridge_axi_base_addr) 
+neuromorphic_bridge_registers = mmap.mmap(mem_file, neuromorphic_bridge_axi_addr_size, mmap.MAP_SHARED, mmap.PROT_READ | mmap.PROT_WRITE, 0) 
+# neuromorphic_bridge_registers = mmap.mmap(mem_file, neuromorphic_bridge_axi_addr_size, mmap.MAP_SHARED, mmap.PROT_READ | mmap.PROT_WRITE, 0, neuromorphic_bridge_axi_base_addr) 
 regs = neuromorphic_bridge_registers
 
 CHAR_SEL_REG = 0x0
