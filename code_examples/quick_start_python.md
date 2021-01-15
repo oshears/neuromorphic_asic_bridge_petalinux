@@ -3,7 +3,57 @@
 ## Letter Reference Sheet
 https://drive.google.com/file/d/1NKk71k131ZONjTr-Jv4CoLerobeFP7Y_/view?usp=sharing
 
+## Registers
+### Address Map
+
+| Register Name | Register Address
+|-|-
+| Character Selection Register | 0x0
+| Network Output Register | 0x4
+| Direct Control Register | 0x8
+| Debug Register | 0xC
+| Analog Channel 0 Register | 0x10
+| Analog Channel 1 Register | 0x14
+| Analog Channel 2 Register | 0x18
+| Analog Channel 3 Register | 0x1C
+
+## Register Details
+
+### Character Selection Register
+| Bit | Description 
+|-|-
+| 1:0 | Used to indicate the selected character
+| 31:2 | Reserved
+
+### Network Output Register
+| Bit | Description 
+|-|-
+| 1:0 | Used to report the network's prediction
+| 31:2 | Reserved
+
+### Direct Control Register
+| Bit | Description 
+|-|-
+| 15:0 | Used to send a custom character to the network
+| 31:16 | Reserved
+
+### Debug Register
+| Bit | Description 
+|-|-
+| 0 | Used to send a custom character to the network
+| 1 | Used to send a custom character to the network
+| 2 | Used to send a custom character to the network
+| 3 | Used to send a custom character to the network
+| 4 | Used to send a custom character to the network
+| 5 | Used to send a custom character to the network
+| 15:6 | Reserved
+### Analog Channel Registers
+
 ## Setup
+| Bit | Description 
+|-|-
+| 11:0 | Used to send a custom character to the network
+| 31:12 | Reserved
 
 ### Import `os` and `mmap`
 ```
