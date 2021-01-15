@@ -40,19 +40,19 @@ https://drive.google.com/file/d/1NKk71k131ZONjTr-Jv4CoLerobeFP7Y_/view?usp=shari
 ### Debug Register
 | Bit | Description 
 |-|-
-| 0 | Used to send a custom character to the network
-| 1 | Used to send a custom character to the network
-| 2 | Used to send a custom character to the network
-| 3 | Used to send a custom character to the network
-| 4 | Used to send a custom character to the network
-| 5 | Used to send a custom character to the network
+| 0 | Used to display the first 8 bits of the selected character output
+| 1 | Used to display the first 8 bits of the direct control character output
+| 2 | Used to output the direct control register's character output on the PMOD pins
+| 3 | Uses slow 1Hz clock for character selection
+| 4 | Enables 1-Hot encoding for XADC multiplexer bits
+| 5 | Used to send a logic 1 (HIGH) to the XADC header's GPIO3 pin
 | 15:6 | Reserved
 ### Analog Channel Registers
 
 ## Setup
 | Bit | Description 
 |-|-
-| 11:0 | Used to send a custom character to the network
+| 11:0 | Used report the analog value read in from the XADC
 | 31:12 | Reserved
 
 ### Import `os` and `mmap`
