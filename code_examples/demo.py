@@ -3,12 +3,9 @@ import mmap
 import time
 
 
-# mem_file = os.open("/dev/mem", os.O_SYNC | os.O_RDWR)
 mem_file = os.open("/dev/uio0", os.O_SYNC | os.O_RDWR)
-# neuromorphic_bridge_axi_base_addr = 0x43C00000
 neuromorphic_bridge_axi_addr_size = 0x10000
 neuromorphic_bridge_registers = mmap.mmap(mem_file, neuromorphic_bridge_axi_addr_size, mmap.MAP_SHARED, mmap.PROT_READ | mmap.PROT_WRITE, 0) 
-# neuromorphic_bridge_registers = mmap.mmap(mem_file, neuromorphic_bridge_axi_addr_size, mmap.MAP_SHARED, mmap.PROT_READ | mmap.PROT_WRITE, 0, neuromorphic_bridge_axi_base_addr) 
 regs = neuromorphic_bridge_registers
 
 CHAR_SEL_REG = 0x0
@@ -43,7 +40,7 @@ print(f"Debug Register: { neuromorphic_bridge_registers[DBG_REG] }")
 for i in range(4):
     neuromorphic_bridge_registers[CHAR_SEL_REG] = i
     print(f"Character Select Register: { neuromorphic_bridge_registers[CHAR_SEL_REG] }")
-    time.sleep(5)
+    time.sleep(2)
 
 # Network Output Register
 print(f"Network Output Register: { neuromorphic_bridge_registers[NET_OUT_REG] }")
@@ -56,7 +53,7 @@ print(f"Debug Register: { neuromorphic_bridge_registers[DBG_REG] }")
 
 
 # Test Direct Control Register
-for i in range(256):
+for i in range(16):
     neuromorphic_bridge_registers[DIRECT_CTRL_REG] = i
     print(f"Direct Control Register: { neuromorphic_bridge_registers[DIRECT_CTRL_REG] }")
     time.sleep(0.1)
@@ -64,7 +61,9 @@ for i in range(256):
 
 # Cycle Through Network Output
 userInput = ""
-neuromorphic_bridge_registers[DBG_REG] = DBG_REG_1HOT
+neuromorphic_bridge_registers[DBG_REG] = 0x0
+
+print("Press [ENTER] to cycle through network output and analog voltage registers.")
 
 while userInput != "q":
     print(f"Network Output: {neuromorphic_bridge_registers[NET_OUT_REG]}")
