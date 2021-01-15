@@ -65,7 +65,7 @@ cp images/linux/BOOT.BIN /media/oshears/BOOT/
 cp images/linux/image.ub /media/oshears/BOOT/
 cp images/linux/boot.scr /media/oshears/BOOT/
 sudo tar xvf ./images/linux/rootfs.tar.gz -C /media/oshears/ROOTFS/
-# sync
+sync
 # watch grep -e Dirty: -e Writeback: /proc/meminfo
 #udisksctl unmount -b /dev/sdb1
 #udisksctl power-off -b /dev/sdb
@@ -86,3 +86,7 @@ sudo tar xvf ./images/linux/rootfs.tar.gz -C /media/oshears/ROOTFS/
 #petalinux-build -c kernel -x update-recipe
 #petalinux-build -c kernel -x finish
 #petalinux-build -x mrproper -f
+
+# setenv bootargs 'console=ttyPS0,115200 earlyprintk uio_pdrv_genirq.of_id=generic-uio root=/dev/mmcblk0p2'
+# saveenv
+# boot

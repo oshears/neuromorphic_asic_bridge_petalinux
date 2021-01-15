@@ -20,4 +20,11 @@ usb_phy_0: phy0 {
     linux,phandle = <0x7>;
     phandle = <0x7>;
    };
+
+chosen {
+        bootargs = "console=ttyPS0,115200 earlyprintk uio_pdrv_genirq.of_id=generic-uio root=/dev/mmcblk0p2 init=/sbin/init";
+    };
+};
+&neuromorphic_asic_br_0 {
+    compatible = "generic-uio";
 };
