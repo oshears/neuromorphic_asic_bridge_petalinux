@@ -46,7 +46,7 @@ https://drive.google.com/file/d/1NKk71k131ZONjTr-Jv4CoLerobeFP7Y_/view?usp=shari
 | 3 | Uses slow 1Hz clock for character selection
 | 4 | Enables 1-Hot encoding for XADC multiplexer bits
 | 5 | Used to send a logic 1 (HIGH) to the XADC header's GPIO3 pin
-| 15:6 | Reserved
+| 15:16 | Reserved
 
 ### Analog Channel Registers [0x10 - 0x1C]
 | Bit | Description 
