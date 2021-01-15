@@ -19,25 +19,25 @@ https://drive.google.com/file/d/1NKk71k131ZONjTr-Jv4CoLerobeFP7Y_/view?usp=shari
 
 ## Register Details
 
-### Character Selection Register
+### Character Selection Register [0x0]
 | Bit | Description 
 |-|-
 | 1:0 | Used to indicate the selected character
 | 31:2 | Reserved
 
-### Network Output Register
+### Network Output Register [0x4]
 | Bit | Description 
 |-|-
 | 1:0 | Used to report the network's prediction
 | 31:2 | Reserved
 
-### Direct Control Register
+### Direct Control Register [0x8]
 | Bit | Description 
 |-|-
 | 15:0 | Used to send a custom character to the network
 | 31:16 | Reserved
 
-### Debug Register
+### Debug Register [0xC]
 | Bit | Description 
 |-|-
 | 0 | Used to display the first 8 bits of the selected character output
@@ -47,13 +47,14 @@ https://drive.google.com/file/d/1NKk71k131ZONjTr-Jv4CoLerobeFP7Y_/view?usp=shari
 | 4 | Enables 1-Hot encoding for XADC multiplexer bits
 | 5 | Used to send a logic 1 (HIGH) to the XADC header's GPIO3 pin
 | 15:6 | Reserved
-### Analog Channel Registers
 
-## Setup
+### Analog Channel Registers [0x10 - 0x1C]
 | Bit | Description 
 |-|-
 | 11:0 | Used report the analog value read in from the XADC
 | 31:12 | Reserved
+
+## Setup
 
 ### Import `os` and `mmap`
 ```
