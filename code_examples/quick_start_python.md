@@ -121,19 +121,19 @@ regs[0xC] = 0x4
 ### Change Direct CTRL Mode Characters
 #### Change Character to A:
 ```
-regs[8:12] = bytes([0b1111_1001,0b1111_1001,0b0000_0000_,0b0000_0000])
+regs[8:12] = bytes([0b1111_1001,0b1111_1001,0b0000_0000,0b0000_0000])
 ```
 #### Change Character to J:
 ```
-regs[8:12] = bytes([0b1001_0110,0b0001_0001,0b0000_0000_,0b0000_0000])
+regs[8:12] = bytes([0b1001_0110,0b0001_0001,0b0000_0000,0b0000_0000])
 ```
 #### Change Character to N:
 ```
-regs[8:12] = bytes([0b1011_1001,0b1001_1101,0b0000_0000_,0b0000_0000])
+regs[8:12] = bytes([0b1011_1001,0b1001_1101,0b0000_0000,0b0000_0000])
 ```
 #### Change Character to X:
 ```
-regs[8:12] = bytes([0b0110_1001,0b1001_0110,0b0000_0000_,0b0000_0000])
+regs[8:12] = bytes([0b0110_1001,0b1001_0110,0b0000_0000,0b0000_0000])
 ```
 ## Miscellaneous
 ### Drive GPIO3 High
