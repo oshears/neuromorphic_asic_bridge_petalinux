@@ -16,6 +16,8 @@ VAUX0_REG = 0x10
 VAUX1_REG = 0x14
 VAUX2_REG = 0x18
 VAUX3_REG = 0x1C
+PWM_CLK_DIV_REG = 0x20
+PWM_BLK_DUTY_CYCLE_REG = 0x24
 
 # DBG Controls
 # BIT 0: IF ACTIVE, then display char information on LEDs, ELSE display network output on LEDS
@@ -24,6 +26,7 @@ VAUX3_REG = 0x1C
 # BIT 3: Use slow 1HZ Clock
 # BIT 4: Use 1-Hot Encoding for XADC Multiplexer
 # BIT 5: debug_reg[5] output on XADC header GPIO3
+PWM_BLK_CLK_OUT = 0x40
 DBG_REG_GPIO3_HIGH = 0x20
 DBG_REG_1HOT = 0x10
 DBG_REG_1HZ = 0x08

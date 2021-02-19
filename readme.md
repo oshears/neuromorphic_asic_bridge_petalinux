@@ -38,6 +38,7 @@ cp images/linux/BOOT.BIN /media/oshears/BOOT/
 cp images/linux/image.ub /media/oshears/BOOT/
 cp images/linux/boot.scr /media/oshears/BOOT/
 sudo tar xvf ./images/linux/rootfs.tar.gz -C /media/oshears/ROOTFS/
+sync
 ```
 
 ---

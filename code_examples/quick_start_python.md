@@ -111,6 +111,16 @@ regs[0x18]
 regs[0x1C]
 ```
 
+## Slow Output Mode
+### Enable Slow Clock
+```
+regs[0xC] = 0x08
+```
+### Set PWM Clock Divider
+```
+regs[0x20] = 9
+```
+
 ## Direct Control Mode
 
 ### Direct Control Mode Output
@@ -139,4 +149,31 @@ regs[8:12] = bytes([0b0110_1001,0b1001_0110,0b0000_0000,0b0000_0000])
 ### Drive GPIO3 High
 ```
 regs[0xC] = 0x20
+```
+
+## PWM Block
+### Enable PWM Clock Output
+```
+regs[0xC] = 0x40
+```
+### Set PWM Clock Divider
+```
+regs[0x20] = 0x14
+```
+### Set PWM Duty Cycle
+```
+regs[0x24:0x28] = bytes([0x00,0x00,0x08,0x00])
+```
+### Common Configurations
+#### 1Hz, 50% Duty Cycle
+```
+regs[0xC] = 0x40
+regs[0x20] = 0x14
+regs[0x24:0x28] = bytes([0x00,0x00,0x08,0x00])
+```
+#### 100Khz, 50% Duty Cycle
+```
+regs[0xC] = 0x40
+regs[0x20] = 0x03
+regs[0x24:0x28] = bytes([0x04,0x00,0x00,0x00])
 ```
