@@ -77,3 +77,48 @@ while userInput != "q":
     print(f"VAUX3: {neuromorphic_bridge_registers[VAUX3_REG]}")
 
     userInput = input()
+
+
+# Cycle Through Duty Cycles At 100KHz (1MHz Ref Clk)
+regs[0xC] = 0x40
+regs[0x20] = 0x03
+regs[0x24:0x28] = bytes([0x00,0x00,0x00,0x00])
+for i in range(0,10,1):
+    print(f"Duty Cycle: {(i/9)*100}%")
+    regs[0x24:0x28] = bytes([i,0x00,0x00,0x00])
+    time.sleep(1)
+
+# Cycle Through Duty Cycles At 100KHz (1MHz Ref Clk)
+regs[0xC] = 0x40
+regs[0x20] = 0x03
+regs[0x24:0x28] = bytes([0x00,0x00,0x00,0x00])
+max_count = 0x8
+step_size = max(int(max_count / 10),1)
+for i in range(0,max_count,step_size):
+    print(f"Duty Cycle: {(i/max_count)*100}%")
+    regs[0x24:0x28] = bytes([(i >> 0) & 0xF,(i >> 8) & 0xF,(i >> 16) & 0xF,(i >> 24) & 0xF])
+    time.sleep(1)
+
+# Cycle Through Duty Cycles At 1Hz (1MHz Ref Clk)
+regs[0xC] = 0x40
+regs[0x20] = 0x14
+regs[0x24:0x28] = bytes([0x00,0x00,0x00,0x00])
+max_count = 0x80000
+step_size = max(int(max_count / 10),1)
+for i in range(0,max_count,step_size):
+    print(f"Duty Cycle: {(i/max_count)*100}%")
+    regs[0x24:0x28] = bytes([(i >> 0) & 0xF,(i >> 8) & 0xF,(i >> 16) & 0xF,(i >> 24) & 0xF])
+    time.sleep(1)
+    
+    
+# Cycle Through Duty Cycles At 100KHz (100MHz Ref Clk)
+regs[0xC] = 0xC0
+regs[0x20] = 0x0A
+regs[0x24:0x28] = bytes([0x00,0x00,0x00,0x00])
+max_count = 0x200
+step_size = int(max_count / 10)
+for i in range(0,max_count,step_size):
+    print(f"Duty Cycle: {(i/max_count)*100}%")
+    regs[0x24:0x28] = bytes([(i >> 0) & 0xF,(i >> 8) & 0xF,(i >> 16) & 0xF,(i >> 24) & 0xF])
+    time.sleep(1)
+    
