@@ -26,6 +26,7 @@ PWM_BLK_DUTY_CYCLE_REG = 0x24
 # BIT 3: Use slow 1HZ Clock
 # BIT 4: Use 1-Hot Encoding for XADC Multiplexer
 # BIT 5: debug_reg[5] output on XADC header GPIO3
+PWM_BLK_HS_CLK_SEL = 0x80
 PWM_BLK_CLK_OUT = 0x40
 DBG_REG_GPIO3_HIGH = 0x20
 DBG_REG_1HOT = 0x10
