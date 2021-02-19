@@ -80,13 +80,13 @@ while userInput != "q":
 
 
 # Cycle Through Duty Cycles At 100KHz (1MHz Ref Clk)
-regs[0xC] = 0x40
-regs[0x20] = 0x03
-regs[0x24:0x28] = bytes([0x00,0x00,0x00,0x00])
-for i in range(0,10,1):
-    print(f"Duty Cycle: {(i/9)*100}%")
-    regs[0x24:0x28] = bytes([i,0x00,0x00,0x00])
-    time.sleep(1)
+# regs[0xC] = 0x40
+# regs[0x20] = 0x03
+# regs[0x24:0x28] = bytes([0x00,0x00,0x00,0x00])
+# for i in range(0,10,1):
+#     print(f"Duty Cycle: {(i/9)*100}%")
+#     regs[0x24:0x28] = bytes([i,0x00,0x00,0x00])
+#     time.sleep(1)
 
 # Cycle Through Duty Cycles At 100KHz (1MHz Ref Clk)
 regs[0xC] = 0x40
@@ -115,10 +115,11 @@ for i in range(0,max_count,step_size):
 regs[0xC] = 0xC0
 regs[0x20] = 0x0A
 regs[0x24:0x28] = bytes([0x00,0x00,0x00,0x00])
-max_count = 0x200
+max_count = 0x400
 step_size = int(max_count / 10)
 for i in range(0,max_count,step_size):
     print(f"Duty Cycle: {(i/max_count)*100}%")
-    regs[0x24:0x28] = bytes([(i >> 0) & 0xF,(i >> 8) & 0xF,(i >> 16) & 0xF,(i >> 24) & 0xF])
+    print(f"Duty Cycle Reg: {hex(i)}")
+    regs[0x24:0x28] = bytes([(i >> 0) & 0xFF,(i >> 8) & 0xFF,(i >> 16) & 0xFF,(i >> 24) & 0xFF])
     time.sleep(1)
     
