@@ -46,6 +46,8 @@ https://drive.google.com/file/d/1NKk71k131ZONjTr-Jv4CoLerobeFP7Y_/view?usp=shari
 | 3 | Uses slow 1Hz clock for character selection
 | 4 | Enables 1-Hot encoding for XADC multiplexer bits
 | 5 | Used to send a logic 1 (HIGH) to the XADC header's GPIO3 pin
+| 5 | Used to send a logic 1 (HIGH) to the XADC header's GPIO3 pin
+| 6 | Used to output the PWM Block's Clock on one of the digit outputs
 | 15:16 | Reserved
 
 ### Analog Channel Registers [0x10 - 0x1C]
@@ -111,6 +113,16 @@ regs[0x18]
 regs[0x1C]
 ```
 
+## Configure LEDs
+### Character Output on LEDs
+```
+regs[0xC] = 0x1
+```
+### Direct Control Output on LEDs
+```
+regs[0xC] = 0x2
+```
+
 ## Slow Output Mode
 ### Enable Slow Clock
 ```
@@ -118,7 +130,7 @@ regs[0xC] = 0x08
 ```
 ### Set PWM Clock Divider
 ```
-regs[0x20] = 9
+regs[0x20] = 0x14
 ```
 
 ## Direct Control Mode
