@@ -3,6 +3,8 @@
 ## Letter Reference Sheet
 https://drive.google.com/file/d/1NKk71k131ZONjTr-Jv4CoLerobeFP7Y_/view?usp=sharing
 
+----------------
+
 ## Registers
 ### Address Map
 
@@ -56,6 +58,8 @@ https://drive.google.com/file/d/1NKk71k131ZONjTr-Jv4CoLerobeFP7Y_/view?usp=shari
 | 11:0 | Used report the analog value read in from the XADC
 | 31:12 | Reserved
 
+----------------
+
 ## Setup
 
 ### Import `os` and `mmap`
@@ -69,6 +73,8 @@ import mmap
 mem_file = os.open("/dev/uio0", os.O_SYNC | os.O_RDWR)
 regs = mmap.mmap(mem_file, 0x10000, mmap.MAP_SHARED, mmap.PROT_READ | mmap.PROT_WRITE, 0)
 ```
+
+----------------
 
 ## Character Selection
 
@@ -89,6 +95,8 @@ regs[0x0] = 0x10
 ```
 regs[0x0] = 0x11
 ```
+
+----------------
 
 ## Network Output and Analog Values
 ### Read Network Output
@@ -113,6 +121,8 @@ regs[0x18]
 regs[0x1C]
 ```
 
+----------------
+
 ## Configure LEDs
 ### Character Output on LEDs
 ```
@@ -123,6 +133,8 @@ regs[0xC] = 0x1
 regs[0xC] = 0x2
 ```
 
+----------------
+
 ## Slow Output Mode
 ### Enable Slow Clock
 ```
@@ -132,6 +144,8 @@ regs[0xC] = 0x08
 ```
 regs[0x20] = 0x14
 ```
+
+----------------
 
 ## Direct Control Mode
 
@@ -161,11 +175,16 @@ regs[8:12] = bytes([0b1011_1001,0b1001_1101,0b0000_0000,0b0000_0000])
 ```
 regs[8:12] = bytes([0b0110_1001,0b1001_0110,0b0000_0000,0b0000_0000])
 ```
+
+----------------
+
 ## Miscellaneous
 ### Drive GPIO3 High
 ```
 regs[0xC] = 0x20
 ```
+
+----------------
 
 ## PWM Block
 ### Enable PWM Clock Output
@@ -205,6 +224,8 @@ regs[0xC] = 0xC0
 regs[0x20] = 0x09
 regs[0x24:0x28] = bytes([0x00,0x01,0x00,0x00])
 ```
+
+----------------
 
 ## Clock Divider Calculations (1MHz PWM_CLK)
 The duty cycle of the clock can be calculated using the following equation:
@@ -246,6 +267,8 @@ DUTY_CYCLE = DUTY_CYCLE_REG / MAX_COUNTER
 | 30            | 1E          | 0.00093      | 1073.741826 | 1073741826            | 1073741824  | 40000000          | 20000000                 |
 | 31            | 1F          | 0.00047      | 2147.483650 | 2147483650            | 2147483648  | 80000000          | 40000000                 |
 
+----------------
+
 ## Clock Divider Calculations (100MHz PWM_CLK)
 | Divider Value | Divider Reg | HZ          | Seconds     | Duty Cycle Resolution | Max Counter | Max Counter (Hex) | 50% Duty Cycle Reg Value |
 |---------------|-------------|-------------|-------------|-----------------------|-------------|-------------------|--------------------------|
@@ -282,6 +305,7 @@ DUTY_CYCLE = DUTY_CYCLE_REG / MAX_COUNTER
 | 30            | 1E          | 0.09        | 10.73741826 | 1073741826            | 1073741824  | 40000000          | 20000000                 |
 | 31            | 1F          | 0.05        | 21.47483650 | 2147483650            | 2147483648  | 80000000          | 40000000                 |
 
+----------------
 
 ## PMOD DAC Interface
 ### Enable PMOD DAC Interface on JA1 PMOD Pins
@@ -296,6 +320,8 @@ regs[0x2C:0x30] = bytes([0xFF,0xFF,0x03,0x00])
 ```
 regs[0x2C:0x30] = bytes([0xFF,0xFF,0x00,0x00])
 ```
+
+----------------
 
 ## Digit Output at 500kHz
 ### Slow Clock Enable, Display Digits on LEDs
