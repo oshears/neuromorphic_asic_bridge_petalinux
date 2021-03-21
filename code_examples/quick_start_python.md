@@ -281,3 +281,32 @@ DUTY_CYCLE = DUTY_CYCLE_REG / MAX_COUNTER
 | 29            | 1D          | 0.19        | 5.36870914  | 536870914             | 536870912   | 20000000          | 10000000                 |
 | 30            | 1E          | 0.09        | 10.73741826 | 1073741826            | 1073741824  | 40000000          | 20000000                 |
 | 31            | 1F          | 0.05        | 21.47483650 | 2147483650            | 2147483648  | 80000000          | 40000000                 |
+
+
+## PMOD DAC Interface
+### Enable PMOD DAC Interface on JA1 PMOD Pins
+```
+regs[0x24:0x28] = bytes([0x04,0x00,0x00,0x00])
+```
+### Write Data to PMOD DAC
+```
+regs[0x24:0x28] = bytes([0xCD,0xAB,0x03,0x00])
+```
+### Clear PMOD DAC CFG Reg
+```
+regs[0x2C:0x30] = bytes([0xCD,0xAB,0x03,0x00])
+```
+
+## Digit Output at 500kHz
+### Slow Clock Enable, Display Digits on LEDs
+```
+regs[0x0C] = 0x09
+```
+### 500kHz Frequency
+```
+regs[0x20] = 0x01
+```
+### 0.5s Period
+```
+regs[0x20] = 0x13
+```
