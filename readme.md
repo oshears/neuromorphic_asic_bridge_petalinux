@@ -94,3 +94,42 @@ python demo.py
 ### First Stage Boot Loader (FSBL) Image
 ### U-Boot
 ### YOCTO
+
+
+
+# Common Configurations
+
+## Neuromorphic
+petalinux-config --get-hw-description=~/Documents/vt/research/code/verilog/neuromorphic_asic_bridge/vivado/neuromorphic_asic_bridge_system_project/neuromorphic_asic_bridge_system_wrapper.xsa
+
+## ASIC Activation Function
+```
+petalinux-config --get-hw-description=/home/oshears/Documents/vt/research/code/verilog/hybrid_dfr_system/vivado/asic_function_system_project/asic_function_system_wrapper.xsa
+petalinux-build
+petalinux-package --boot --fsbl ./images/linux/zynq_fsbl.elf --fpga /home/oshears/Documents/vt/research/code/verilog/hybrid_dfr_system/vivado/asic_function_system_project/asic_function_system_project.runs/impl_1/asic_function_system_wrapper.bit --u-boot --force
+cp images/linux/BOOT.BIN /media/oshears/BOOT/
+cp images/linux/image.ub /media/oshears/BOOT/
+cp images/linux/boot.scr /media/oshears/BOOT/
+sudo tar xvf ./images/linux/rootfs.tar.gz -C /media/oshears/ROOTFS/
+sync
+```
+
+## FPGA DFR System
+petalinux-config --get-hw-description=/home/oshears/Documents/vt/research/code/verilog/hybrid_dfr_system/vivado/dfr_core_system_project/dfr_core_system_wrapper.xsa
+petalinux-build
+petalinux-package --boot --fsbl ./images/linux/zynq_fsbl.elf --fpga /home/oshears/Documents/vt/research/code/verilog/hybrid_dfr_system/vivado/dfr_core_system_project/dfr_core_system_project.runs/impl_1/dfr_core_system_wrapper.bit --u-boot --force
+cp images/linux/BOOT.BIN /media/oshears/BOOT/
+cp images/linux/image.ub /media/oshears/BOOT/
+cp images/linux/boot.scr /media/oshears/BOOT/
+sudo tar xvf ./images/linux/rootfs.tar.gz -C /media/oshears/ROOTFS/
+sync
+
+## Hybrid DFR System
+petalinux-config --get-hw-description=/home/oshears/Documents/vt/research/code/verilog/hybrid_dfr_system/vivado/dfr_core_hybrid_system_project/dfr_core_hybrid_system_wrapper.xsa
+petalinux-build
+petalinux-package --boot --fsbl ./images/linux/zynq_fsbl.elf --fpga /home/oshears/Documents/vt/research/code/verilog/hybrid_dfr_system/vivado/dfr_core_hybrid_system_project/dfr_core_hybrid_system_project.runs/impl_1/dfr_core_hybrid_system_wrapper.bit --u-boot --force
+cp images/linux/BOOT.BIN /media/oshears/BOOT/
+cp images/linux/image.ub /media/oshears/BOOT/
+cp images/linux/boot.scr /media/oshears/BOOT/
+sudo tar xvf ./images/linux/rootfs.tar.gz -C /media/oshears/ROOTFS/
+sync

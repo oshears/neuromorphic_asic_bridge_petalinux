@@ -162,10 +162,14 @@ regs[0x20] = 0x14
 #### Change Character to A:
 ```
 regs[8:12] = bytes([0b1111_1001,0b1111_1001,0b0000_0000,0b0000_0000])
+# Corrected A:
+regs[8:12] = bytes([0b1001_1111,0b1001_1111,0b0000_0000,0b0000_0000])
 ```
 #### Change Character to J:
 ```
 regs[8:12] = bytes([0b1001_0110,0b0001_0001,0b0000_0000,0b0000_0000])
+# Corrected J:
+regs[8:12] = bytes([0b0100_1111,0b0111_0101,0b0000_0000,0b0000_0000])
 ```
 #### Change Character to N:
 ```
